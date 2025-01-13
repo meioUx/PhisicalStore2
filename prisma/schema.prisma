@@ -22,15 +22,8 @@ model Store {
   district           String
   state              String
   country            String
-  type               Type     @relation(fields: [typeTypeId], references: [typeId])
   postalCode         String
   telephoneNumber    String
   emailAddress       String
-  typeTypeId         String
-}
-
-model Type {
-  typeId   String  @id @default(uuid())
-  typeName String
-  Store    Store[]
+  type               String
 }

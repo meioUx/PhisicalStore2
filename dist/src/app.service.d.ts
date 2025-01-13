@@ -1,3 +1,58 @@
+import { PrismaService } from 'src/app/prisma/prisma.service';
+import { CorreiosService } from './app/correios/service/correios.service';
+import { ViacepService } from './app/viacep/service/viacep.service';
+import { GoogleService } from './app/google/service/google.service';
 export declare class AppService {
-    getHello(): string;
+    private readonly prisma;
+    private readonly correiosService;
+    private readonly viacepService;
+    private readonly googleServices;
+    constructor(prisma: PrismaService, correiosService: CorreiosService, viacepService: ViacepService, googleServices: GoogleService);
+    findAll(offset?: number, limit?: number): Promise<{
+        stores: {
+            storeId: string;
+            storeName: string;
+            content: string | null;
+            takeOutInStore: boolean | null;
+            shippingTimeInDays: number | null;
+            latitude: string;
+            longitude: string;
+            address1: string;
+            address2: string;
+            address3: string;
+            city: string;
+            district: string;
+            state: string;
+            country: string;
+            postalCode: string;
+            telephoneNumber: string;
+            emailAddress: string;
+            type: string;
+        }[];
+        limit: number;
+        offset: number;
+        total: number;
+    }>;
+    findByCep(postalCode: string, offset?: number, limit?: number): Promise<any>;
+    findById(id: string): import(".prisma/client").Prisma.Prisma__StoreClient<{
+        storeId: string;
+        storeName: string;
+        content: string | null;
+        takeOutInStore: boolean | null;
+        shippingTimeInDays: number | null;
+        latitude: string;
+        longitude: string;
+        address1: string;
+        address2: string;
+        address3: string;
+        city: string;
+        district: string;
+        state: string;
+        country: string;
+        postalCode: string;
+        telephoneNumber: string;
+        emailAddress: string;
+        type: string;
+    }, null, import("@prisma/client/runtime/library").DefaultArgs, import(".prisma/client").Prisma.PrismaClientOptions>;
+    findByState(state: string, offset?: number, limit?: number): Promise<any>;
 }
